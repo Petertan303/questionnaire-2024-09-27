@@ -52,26 +52,23 @@
     <script>
         $(document).ready(function() {
             const apiBaseUrl = 'https://frp-few.top:57576/';
-
-            // const response = fetch('https://ip.011102.xyz/');
-            // const ip = response.json().IP.IP;
-            // const md5Ip = CryptoJS.MD5(ip).toString();
+            const ip = fetch('https://ip.011102.xyz/').json().IP.IP;
+            const md5Ip = CryptoJS.MD5(ip).toString();
 
             $('#survey-form').on('submit', function(event) {
                 event.preventDefault();
-
                 const formData = $(this).serializeArray();
                 const jsonData = {};
                 formData.forEach(function(item) {
                     jsonData[item.name] = item.value;
                 });
-
                 $.ajax({
                     url: `${apiBaseUrl}/submit_survey/`,
                     type: 'POST',
                     data: JSON.stringify(jsonData), // 转换为JSON格式
                     contentType: "application/json",
                     Origin: "https://blog.wspdwzh.space/",
+                    md5Ip: md5Ip,
                     success: function(response) {
                         alert('感谢您的参与！');
                         $('#survey-form').hide();
