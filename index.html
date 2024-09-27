@@ -59,7 +59,7 @@
                 var formData = $(this).serialize(); // 获取表单数据
 
                 $.ajax({
-                    url: `${apiBaseUrl}/submit_survey`,
+                    url: `${apiBaseUrl}/submit_survey/`,
                     type: 'POST',
                     data: formData,
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
