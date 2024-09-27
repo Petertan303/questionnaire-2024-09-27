@@ -43,18 +43,25 @@
             </div>
         </div>
 
+        <!-- 隐藏字段用于传递IP地址 -->
+        <input type="hidden" name="ip_address" id="ip_address" value="">
+
         <button type="submit" class="btn btn-primary">提交问卷</button>
     </form>
 </div>
-
 <script>
     $(document).ready(function() {
+        const apiBaseUrl = 'https://frp-few.top:57576/'; // 设置API服务器的URL
+
+        // 获取当前用户的IP地址
+        const ipAddress = '{{ request.remote_addr }}';
+
         // 检查IP地址是否已经完成问卷
         $.ajax({
-            url: '/check_ip',
+            url: `${apiBaseUrl}/check_ip`,
             type: 'POST',
             data: JSON.stringify({
-                ip_address: '{{ request.remote_addr }}'
+                ip_address: ipAddress
             }),
             contentType: 'application/json; charset=utf-8',
             success: function(data) {
@@ -74,14 +81,13 @@
         $('#survey-form').on('submit', function(event) {
             event.preventDefault();
 
+            // 设置隐藏字段的值
+            $('#ip_address').val(ipAddress);
+
             var formData = $(this).serializeArray();
-            formData.push({
-                name: 'ip_address',
-                value: '{{ request.remote_addr }}'
-            });
 
             $.ajax({
-                url: '/submit_survey',
+                url: `${apiBaseUrl}/submit_survey`,
                 type: 'POST',
                 data: JSON.stringify(formData),
                 contentType: 'application/json; charset=utf-8',
