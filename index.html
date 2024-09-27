@@ -77,7 +77,7 @@
                     data: JSON.stringify(jsonData),
                     contentType: "application/json",
                     success: function(response) {
-                        alert('感谢您的参与！');
+                        alert(response.message);
                         $('#survey-form').hide();
                         $('#survey-status').show();
                     },
