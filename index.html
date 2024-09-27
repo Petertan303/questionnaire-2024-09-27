@@ -53,11 +53,10 @@
         $(document).ready(function() {
             const apiBaseUrl = 'https://frp-few.top:57576/';
 
-            const response = fetch('https://ip.011102.xyz/');
-            const ip = response.json().IP.IP;
+            // const response = fetch('https://ip.011102.xyz/');
+            // const ip = response.json().IP.IP;
+            // const md5Ip = CryptoJS.MD5(ip).toString();
 
-            // MD5加密
-            const md5Ip = CryptoJS.MD5(ip).toString();
             $('#survey-form').on('submit', function(event) {
                 event.preventDefault();
 
@@ -86,7 +85,7 @@
             });
         });
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> -->
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </body>
 
