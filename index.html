@@ -83,6 +83,7 @@
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
+                        alter(xhr.responseText);
                         alert('提交失败，请重试。');
                     }
                 });
