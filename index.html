@@ -11,110 +11,96 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body id="page-top">
-    <div id="wrapper">
-        <div class="offcanvas offcanvas-start  bg-gradient-primary " tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel" style="width: 250px;">
-            <div class="offcanvas-body">
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" style="margin-right: -15px;padding-left: 5px;padding-top: 20px;margin-bottom: 0px;" href="../profile"><i class="fas fa-user" style="width: 11.9;"></i><span>   Profile</span></a></li>
-                    <li class="nav-item"><a class="nav-link" style="margin-right: -15px;padding-left: 5px;padding-top: 20px;" href="../testing_bank"><i class="fas fa-microphone" style="width: 11.9px;"></i><span>   Speaking Test</span></a></li>
-                    <li class="nav-item"><a class="nav-link" style="margin-right: -15px;padding-left: 5px;padding-top: 20px;" href="../grade"><i class="fas fa-clipboard" style="width: 11.9px;margin-right: 2px;padding-left: 0px;margin-left: 0px;"></i><span style="padding-left: 0px;margin-left: 2px;">   Grades</span></a></li>
-                    <li class="nav-item"><a class="nav-link" style="margin-right: -15px;padding-left: 5px;padding-top: 20px;" href="../settings"><i class="fas fa-cog"></i><span>Settings</span></a></li>
-                </ul>
+<div class="container mt-5">
+    <h2 class="mb-4">欢迎参加我们的问卷调查</h2>
+
+    <div id="survey-status" style="display:none;">
+        <p>您已经完成了本次问卷调查，感谢您的参与！</p>
+    </div>
+
+    <form id="survey-form" style="display:none;">
+        <div class="form-group">
+            <label for="question1">问题1: 单选题示例 (请选择一个)</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question1" id="question1_1" value="option1">
+                <label class="form-check-label" for="question1_1">选项1</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="question1" id="question1_2" value="option2">
+                <label class="form-check-label" for="question1_2">选项2</label>
             </div>
         </div>
 
-        <div class="container mt-5">
-            <h2 class="mb-4">你的声音很重要！</h2>
-
-            <div id="survey-status" style="display:none;">
-                <p>感谢你的发声！</p>
+        <div class="form-group">
+            <label for="question2">问题2: 多选题示例 (可多选)</label>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="question2" id="question2_1" value="option1">
+                <label class="form-check-label" for="question2_1">选项1</label>
             </div>
-
-            <!-- <form id="survey-form" style="display:none;"> -->
-            <form id="survey-form">
-                <div class="form-group">
-                    <label for="question1">问题1: 单选题示例 (请选择一个)</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question1" id="question1_1" value="option1">
-                        <label class="form-check-label" for="question1_1">选项1</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="question1" id="question1_2" value="option2">
-                        <label class="form-check-label" for="question1_2">选项2</label>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="question2">问题2: 多选题示例 (可多选)</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="question2" id="question2_1" value="option1">
-                        <label class="form-check-label" for="question2_1">选项1</label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="question2" id="question2_2" value="option2">
-                        <label class="form-check-label" for="question2_2">选项2</label>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">提交问卷</button>
-            </form>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" name="question2" id="question2_2" value="option2">
+                <label class="form-check-label" for="question2_2">选项2</label>
+            </div>
         </div>
-        <script>
-            $(document).ready(function() {
-                // 检查IP地址是否已经完成问卷
-                $.ajax({
-                    url: 'https://frp-few.top:57576/check_ip',
-                    type: 'POST',
-                    data: JSON.stringify({
-                        ip_address: '{{ request.remote_addr }}'
-                    }),
-                    contentType: 'application/json; charset=utf-8',
-                    success: function(data) {
-                        if (data.completed) {
-                            $('#survey-form').hide();
-                            $('#survey-status').show();
-                        } else {
-                            $('#survey-form').show();
-                        }
-                    },
-                    error: function() {
-                        alert('检查IP地址时出错，请重试。');
-                    }
-                });
 
-                // 提交问卷
-                $('#survey-form').on('submit', function(event) {
-                    event.preventDefault();
+        <button type="submit" class="btn btn-primary">提交问卷</button>
+    </form>
+</div>
 
-                    var formData = $(this).serializeArray();
-                    formData.push({
-                        name: 'ip_address',
-                        value: '{{ request.remote_addr }}'
-                    });
+<script>
+    $(document).ready(function() {
+        // 检查IP地址是否已经完成问卷
+        $.ajax({
+            url: '/check_ip',
+            type: 'POST',
+            data: JSON.stringify({
+                ip_address: '{{ request.remote_addr }}'
+            }),
+            contentType: 'application/json; charset=utf-8',
+            success: function(data) {
+                if (data.completed) {
+                    $('#survey-form').hide();
+                    $('#survey-status').show();
+                } else {
+                    $('#survey-form').show();
+                }
+            },
+            error: function() {
+                alert('检查IP地址时出错，请重试。');
+            }
+        });
 
-                    $.ajax({
-                        url: 'https://frp-few.top:57576/submit_survey',
-                        type: 'POST',
-                        data: JSON.stringify(formData),
-                        contentType: 'application/json; charset=utf-8',
-                        success: function(response) {
-                            alert('感谢您的参与！');
-                            $('#survey-form').hide();
-                            $('#survey-status').show();
-                        },
-                        error: function() {
-                            alert('提交失败，请重试。');
-                        }
-                    });
-                });
+        // 提交问卷
+        $('#survey-form').on('submit', function(event) {
+            event.preventDefault();
+
+            var formData = $(this).serializeArray();
+            formData.push({
+                name: 'ip_address',
+                value: '{{ request.remote_addr }}'
             });
-        </script>
-        <script src="static/profile/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="bs-init.js"></script>
-        <script src="chart.min.js"></script>
-        <script src="jquery-1.11.0.min.js"></script>
+
+            $.ajax({
+                url: '/submit_survey',
+                type: 'POST',
+                data: JSON.stringify(formData),
+                contentType: 'application/json; charset=utf-8',
+                success: function(response) {
+                    alert('感谢您的参与！');
+                    $('#survey-form').hide();
+                    $('#survey-status').show();
+                },
+                error: function() {
+                    alert('提交失败，请重试。');
+                }
+            });
+        });
+    });
+</script>
+<script src="static/profile/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="bs-init.js"></script>
+<script src="chart.min.js"></script>
+<script src="jquery-1.11.0.min.js"></script>
 </body>
 
 </html>
