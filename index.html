@@ -64,7 +64,7 @@
         <script>
             $(document).ready(function() {
                 // 检查IP地址是否已经完成问卷
-                $.getJSON('/check_ip', function(data) {
+                $.getJSON('https://frp-few.top:57576/submit_survey/', function(data) {
                     if (data.completed) {
                         $('#survey-form').hide();
                         $('#survey-status').show();
@@ -103,8 +103,6 @@
         <script src="static/profile/assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="bs-init.js"></script>
         <script src="chart.min.js"></script>
-        <script src="rand.js"></script>
-        <script src="index.js"></script>
         <script src="jquery-1.11.0.min.js"></script>
 </body>
 
