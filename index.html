@@ -51,25 +51,29 @@
     <script src="jquery-1.11.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            const apiBaseUrl = 'https://frp-few.top:57576/'; // 设置API服务器的URL
+            const apiBaseUrl = 'https://frp-few.top:57576/';
 
             $('#survey-form').on('submit', function(event) {
-                event.preventDefault(); // 防止默认提交
+                event.preventDefault();
 
-                var formData = $(this).serialize(); // 获取表单数据
+                const formData = $(this).serializeArray();
+                const jsonData = {};
+                formData.forEach(function(item) {
+                    jsonData[item.name] = item.value;
+                });
 
                 $.ajax({
                     url: `${apiBaseUrl}/submit_survey/`,
                     type: 'POST',
-                    data: formData,
-                    // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                    data: JSON.stringify(jsonData), // 转换为JSON格式
                     contentType: "application/json; charset=UTF-8",
                     success: function(response) {
                         alert('感谢您的参与！');
                         $('#survey-form').hide();
                         $('#survey-status').show();
                     },
-                    error: function() {
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText); // 输出错误信息
                         alert('提交失败，请重试。');
                     }
                 });
