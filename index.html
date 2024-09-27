@@ -64,12 +64,23 @@
         <script>
             $(document).ready(function() {
                 // 检查IP地址是否已经完成问卷
-                $.getJSON('https://frp-few.top:57576/submit_survey/', function(data) {
-                    if (data.completed) {
-                        $('#survey-form').hide();
-                        $('#survey-status').show();
-                    } else {
-                        $('#survey-form').show();
+                $.ajax({
+                    url: 'https://frp-few.top:57576/check_ip',
+                    type: 'POST',
+                    data: JSON.stringify({
+                        ip_address: '{{ request.remote_addr }}'
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function(data) {
+                        if (data.completed) {
+                            $('#survey-form').hide();
+                            $('#survey-status').show();
+                        } else {
+                            $('#survey-form').show();
+                        }
+                    },
+                    error: function() {
+                        alert('检查IP地址时出错，请重试。');
                     }
                 });
 
@@ -80,11 +91,11 @@
                     var formData = $(this).serializeArray();
                     formData.push({
                         name: 'ip_address',
-                        value: '{{ request.remote_addr }}'.replace('{{ request.remote_addr }}', '{{ request.remote_addr }}')
-                    }); // 动态获取IP地址
+                        value: '{{ request.remote_addr }}'
+                    });
 
                     $.ajax({
-                        url: '/submit_survey',
+                        url: 'https://frp-few.top:57576/submit_survey',
                         type: 'POST',
                         data: JSON.stringify(formData),
                         contentType: 'application/json; charset=utf-8',
