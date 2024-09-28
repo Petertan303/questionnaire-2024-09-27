@@ -18,139 +18,141 @@
     <script>
         const questions = {
             "questions": [{
-                "id": "question1",
-                "question": "（复选）遭受霸凌的时间？",
-                "options": [{
-                    "id": "option1",
-                    "text": "学龄前"
+                    "id": "question1",
+                    "question": "（复选）遭受霸凌的时间？",
+                    "options": [{
+                        "id": "option1",
+                        "text": "学龄前"
+                    }, {
+                        "id": "option2",
+                        "text": "小学"
+                    }, {
+                        "id": "option3",
+                        "text": "初中"
+                    }, {
+                        "id": "option4",
+                        "text": "高中"
+                    }, {
+                        "id": "option5",
+                        "text": "高中之后"
+                    }]
                 }, {
-                    "id": "option2",
-                    "text": "小学"
+                    "id": "question2",
+                    "question": "（单选）遭受霸凌的程度？（1～5为愈发严重）",
+                    "options": [{
+                        "id": "option1",
+                        "text": "1"
+                    }, {
+                        "id": "option2",
+                        "text": "2"
+                    }, {
+                        "id": "option3",
+                        "text": "3"
+                    }, {
+                        "id": "option4",
+                        "text": "4"
+                    }, {
+                        "id": "option5",
+                        "text": "5"
+                    }]
                 }, {
-                    "id": "option3",
-                    "text": "初中"
+                    "id": "question3",
+                    "question": "（复选）是否寻求过帮助？",
+                    "options": [{
+                        "id": "option0",
+                        "text": "否"
+                    }, {
+                        "id": "option1",
+                        "text": "向老师"
+                    }, {
+                        "id": "option2",
+                        "text": "向家长"
+                    }, {
+                        "id": "option3",
+                        "text": "向其他同学"
+                    }, {
+                        "id": "option4",
+                        "text": "向其他成年人"
+                    }]
                 }, {
-                    "id": "option4",
-                    "text": "高中"
+                    "id": "question4",
+                    "question": "（复选）遭受霸凌的形式？",
+                    "options": [{
+                        "id": "option1",
+                        "text": "冷暴力（例如：集体孤立）"
+                    }, {
+                        "id": "option2",
+                        "text": "直接言语侮辱（例如：辱骂，侮辱性绰号）"
+                    }, {
+                        "id": "option3",
+                        "text": "物理攻击"
+                    }, {
+                        "id": "option4",
+                        "text": "干涉你的个人财产（例如，教科书、文具、玩具）"
+                    }, {
+                        "id": "option5",
+                        "text": "造谣传谣"
+                    }, {
+                        "id": "option6",
+                        "text": "胁迫、恐吓"
+                    }, {
+                        "id": "option7",
+                        "text": "敲诈勒索（索要金钱、物件等）"
+                    }, {
+                        "id": "option8",
+                        "text": "网络欺凌"
+                    }]
                 }, {
-                    "id": "option5",
-                    "text": "高中之后"
-                }]
-            }, {
-                "id": "question2",
-                "question": "（单选）遭受霸凌的程度？（1～5为愈发严重）",
-                "options": [{
-                    "id": "option1",
-                    "text": "1"
+                    "id": "question5",
+                    "question": "（单选）霸凌者的数量？",
+                    "options": [{
+                        "id": "option1",
+                        "text": "单人"
+                    }, {
+                        "id": "option2",
+                        "text": "小团体（2～5人）"
+                    }, {
+                        "id": "option3",
+                        "text": "中等规模团体（6～10人）"
+                    }, {
+                        "id": "option4",
+                        "text": "较大规模（10人以上）"
+                    }]
                 }, {
-                    "id": "option2",
-                    "text": "2"
-                }, {
-                    "id": "option3",
-                    "text": "3"
-                }, {
-                    "id": "option4",
-                    "text": "4"
-                }, {
-                    "id": "option5",
-                    "text": "5"
-                }]
-            }, {
-                "id": "question3",
-                "question": "（复选）是否寻求过帮助？",
-                "options": [{
-                    "id": "option0",
-                    "text": "否"
-                }, {
-                    "id": "option1",
-                    "text": "向老师"
-                }, {
-                    "id": "option2",
-                    "text": "向家长"
-                }, {
-                    "id": "option3",
-                    "text": "向其他同学"
-                }, {
-                    "id": "option4",
-                    "text": "向其他成年人"
-                }]
-            }, {
-                "id": "question4",
-                "question": "（复选）遭受霸凌的形式？",
-                "options": [{
-                    "id": "option1",
-                    "text": "冷暴力（例如：集体孤立）"
-                }, {
-                    "id": "option2",
-                    "text": "直接言语侮辱（例如：辱骂，侮辱性绰号）"
-                }, {
-                    "id": "option3",
-                    "text": "物理攻击"
-                }, {
-                    "id": "option4",
-                    "text": "干涉你的个人财产（例如，教科书、文具、玩具）"
-                }, {
-                    "id": "option5",
-                    "text": "造谣传谣"
-                }, {
-                    "id": "option6",
-                    "text": "胁迫、恐吓"
-                }, {
-                    "id": "option7",
-                    "text": "敲诈勒索（索要金钱、物件等）"
-                }, {
-                    "id": "option8",
-                    "text": "网络欺凌"
-                }]
-            }, {
-                "id": "question5",
-                "question": "（单选）霸凌者的数量？",
-                "options": [{
-                    "id": "option1",
-                    "text": "单人"
-                }, {
-                    "id": "option2",
-                    "text": "小团体（2～5人）"
-                }, {
-                    "id": "option3",
-                    "text": "中等规模团体（6～10人）"
-                }, {
-                    "id": "option4",
-                    "text": "较大规模（10人以上）"
-                }]
-            }, {
-                "id": "question6",
-                "question": "（复选）霸凌者的身份？",
-                "options": [{
-                    "id": "option1",
-                    "text": "同班级同学"
-                }, {
-                    "id": "option2",
-                    "text": "同年级同学（不同班）"
-                }, {
-                    "id": "option3",
-                    "text": "同学校同学（不同年级）"
-                }, {
-                    "id": "option4",
-                    "text": "外校学生（不在同一学校）"
-                }, {
-                    "id": "option5",
-                    "text": "校外非学生人士（非学生的社会分子）"
-                }, {
-                    "id": "option6",
-                    "text": "校内非学生人士"
-                }]
-            }, {
-                "id": "sex",
-                "question": "（单选）你的性别是？",
-                "options": [{
-                    "id": "male",
-                    "text": "男"
-                }, {
-                    "id": "female",
-                    "text": "女"
-                }]
-            }]
+                    "id": "question6",
+                    "question": "（复选）霸凌者的身份？",
+                    "options": [{
+                        "id": "option1",
+                        "text": "同班级同学"
+                    }, {
+                        "id": "option2",
+                        "text": "同年级同学（不同班）"
+                    }, {
+                        "id": "option3",
+                        "text": "同学校同学（不同年级）"
+                    }, {
+                        "id": "option4",
+                        "text": "外校学生（不在同一学校）"
+                    }, {
+                        "id": "option5",
+                        "text": "校外非学生人士（非学生的社会分子）"
+                    }, {
+                        "id": "option6",
+                        "text": "校内非学生人士"
+                    }]
+                },
+                // {
+                //     "id": "sex",
+                //     "question": "（单选）你的性别是？",
+                //     "options": [{
+                //         "id": "male",
+                //         "text": "男"
+                //     }, {
+                //         "id": "female",
+                //         "text": "女"
+                //     }]
+                // }
+            ]
         };
 
         async function fetchData() {
