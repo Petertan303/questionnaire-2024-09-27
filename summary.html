@@ -159,18 +159,35 @@
 
         function renderSummary(data) {
             const summaryDiv = document.getElementById('summary');
+            summaryDiv.innerHTML = ''; // 清空之前的内容
+
             questions.questions.forEach(question => {
                 const questionData = data[question.id] || {};
-                const questionElement = document.createElement('div');
-                questionElement.className = 'mb-4';
-                questionElement.innerHTML = `<h5>${question.question}</h5>`;
+
+                // 创建卡片元素
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card mb-4';
+
+                // 卡片头部
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+                cardHeader.innerHTML = `<h5 class="mb-0">${question.question}</h5>`;
+                cardElement.appendChild(cardHeader);
+
+                // 卡片主体
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
 
                 question.options.forEach(option => {
                     const count = questionData[option.id] || 0;
-                    questionElement.innerHTML += `<p>${option.text}: ${count}人</p>`;
+                    const optionText = document.createElement('p');
+                    optionText.className = 'card-text';
+                    optionText.innerText = `${option.text}: ${count}人`;
+                    cardBody.appendChild(optionText);
                 });
 
-                summaryDiv.appendChild(questionElement);
+                cardElement.appendChild(cardBody);
+                summaryDiv.appendChild(cardElement);
             });
         }
 
