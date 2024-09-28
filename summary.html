@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>调查结果总结</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -178,12 +179,36 @@
                 const cardBody = document.createElement('div');
                 cardBody.className = 'card-body';
 
-                question.options.forEach(option => {
-                    const count = questionData[option.id] || 0;
-                    const optionText = document.createElement('p');
-                    optionText.className = 'card-text';
-                    optionText.innerText = `${option.text}: ${count}人`;
-                    cardBody.appendChild(optionText);
+                // 添加Canvas元素用于Chart.js
+                const canvas = document.createElement('canvas');
+                canvas.id = question.id + '-chart';
+                cardBody.appendChild(canvas);
+
+                // 数据准备
+                const labels = question.options.map(option => option.text);
+                const dataValues = question.options.map(option => questionData[option.id] || 0);
+
+                // 创建图表
+                const ctx = canvas.getContext('2d');
+                new Chart(ctx, {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: '人数',
+                            data: dataValues,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
                 });
 
                 cardElement.appendChild(cardBody);
