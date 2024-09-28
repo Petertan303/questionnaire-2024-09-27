@@ -77,9 +77,10 @@
                         if ($(this).is(':checked')) {
                             jsonData[name].push($(this).val()); // 多选题
                         }
-                    } else if (type !== 'radio' && type !== 'checkbox') {
-                        jsonData[name] = $(this).val(); // 其他输入类型
                     }
+                    // else if (type !== 'radio' && type !== 'checkbox') {
+                    //     jsonData[name] = $(this).val(); // 其他输入类型
+                    // }
                 });
 
                 jsonData.md5Ip = md5Ip;
