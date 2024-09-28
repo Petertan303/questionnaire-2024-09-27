@@ -15,7 +15,7 @@
     <div class="container mt-5">
         <h3 class="mb-4">你的声音很重要......</h3>
 
-        <div class="small" style="padding-bottom: 15px;">
+        <div class="small" style="padding-bottom: 15px;" id="title_p">
             <p>这份问卷面向霸凌的受害者。问卷匿名提交，所有数据全部加密传输，收集到的数据不会被用于任何用途，请放心填写。</p>
             <!-- <p>制作的初衷是提供一个树洞，让受害者能匿名吐露心声。</p> -->
         </div>
@@ -269,6 +269,7 @@
                     success: function(response) {
                         alert(response.message);
                         $('#survey-form').hide();
+                        $('#title_p').hide();
                         $('#survey-status').show();
                     },
                     error: function(xhr, status, error) {
