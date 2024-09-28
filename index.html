@@ -40,6 +40,11 @@
                 </div>
             </div>
 
+            <div class="form-group">
+                <label for="comments">您的反馈 (请提供文本)</label>
+                <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="请在此输入您的反馈"></textarea>
+            </div>
+
             <button type="submit" class="btn btn-primary">提交问卷</button>
         </form>
 
@@ -77,10 +82,9 @@
                         if ($(this).is(':checked')) {
                             jsonData[name].push($(this).val()); // 多选题
                         }
+                    } else if (type === 'textarea' || type === 'text') {
+                        jsonData[name] = $(this).val(); // 文本输入
                     }
-                    // else if (type !== 'radio' && type !== 'checkbox') {
-                    //     jsonData[name] = $(this).val(); // 其他输入类型
-                    // }
                 });
 
                 jsonData.md5Ip = md5Ip;
@@ -97,7 +101,6 @@
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
-                        alter(xhr.responseText);
                         alert('提交失败，请重试。');
                     }
                 });
